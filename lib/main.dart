@@ -70,7 +70,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // Topic? _topic = Topic.centripetal;
+  late final ScrollController _scrollController;
   int selectedTopic = 1;
+  double _progress = 0;
+
+  void _handleControllerNotification() {
+    print('Notified through the scroll controller.${_scrollController.position.maxScrollExtent}');
+    print('Notified through the scroll controller.${_scrollController.position.minScrollExtent}');
+    // Access the position directly through the controller for details on the
+    // scroll position.
+      setState(() {
+        _progress = _scrollController.offset / _scrollController.position.maxScrollExtent;
+      });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _scrollController = ScrollController();
+    // When listening to scrolling via the ScrollController, call
+    // `addListener` on the controller.
+    _scrollController.addListener(_handleControllerNotification);
+    super.initState();
+    // _lesson =
+  }
 
   void openPracticeSession() {
     Navigator.push(context,
@@ -110,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("${widget.title}$_progress"),
         actions: [
           // IconButton(
           //   icon: Icon(Icons.search),
@@ -145,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           } else if (state == 1) {
             return SingleChildScrollView(
+              controller: _scrollController,
               padding: EdgeInsets.all(50.0),
               child: Home(),
             );

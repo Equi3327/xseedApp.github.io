@@ -222,11 +222,11 @@ class _MyListViewState extends State<MyListView>
                       title: Text('2.${topics.indexOf(e) + 1} ${e}'),
                       onTap: () {
                         // debugPrint("+++++++++ ${selectedTopic}");
-                        setState(() {
-                          _selectedTopic = topics.indexOf(e);
-                          debugPrint(
-                              "+${topics.indexOf(e)}++++++++ ${_selectedTopic}");
-                        });
+                        // setState(() {
+                        //   _selectedTopic = topics.indexOf(e);
+                        //   debugPrint(
+                        //       "+${topics.indexOf(e)}++++++++ ${_selectedTopic}");
+                        // });
                         BlocProvider.of<HomeBloc>(context)
                             .add(ChangeTopic(topicIndex: topics.indexOf(e)));
 

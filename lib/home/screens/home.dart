@@ -17,11 +17,13 @@ class _HomeState extends State<Home> {
   String videoUrl = "https://www.youtube.com/watch?v=PHiyQID7SBs&ab_channel=PBSSpaceTime";
   String videoId = "PHiyQID7SBs";
   String formula = r'$F_g =\frac{Gm_1m_2}{r^2}$';
+
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // _lesson =
   }
   @override
   Widget build(BuildContext context) {
